@@ -149,6 +149,10 @@ header.scrolled .navtoggle{ display:block; opacity:1; pointer-events:auto; }
 .hero .wrap{ position:relative; display:flex; flex-direction:column; align-items:center; min-height:88vh; justify-content:center; max-width:1500px; width:94%; }
 .hero-photo-wrap{ display:none; }
 .hero h1{ font-family:var(--block); font-weight:400; font-style:normal; font-size:clamp(60px,19vw,280px); letter-spacing:.01em; line-height:.86; margin:0; width:100%; text-transform:uppercase; display:flex; flex-direction:column; }
+@media (max-width:760px){
+  .hero .wrap{ width:100%; padding-left:14px; padding-right:14px; }
+  .hero h1{ font-size:clamp(74px,23.5vw,160px); letter-spacing:0; }
+}
 .hero h1 .bl{ display:inline-block; transition:transform .25s cubic-bezier(.34,1.56,.64,1), color .25s; }
 .hero h1 .bl:hover{ transform:translateY(-0.1em) scale(1.06); color:var(--violet); }
 .hero h1 .line{ display:block; white-space:nowrap; }
@@ -158,6 +162,7 @@ header.scrolled .navtoggle{ display:block; opacity:1; pointer-events:auto; }
 .hero .status-chip .dot{ width:7px; height:7px; border-radius:50%; background:var(--teal-solid); box-shadow:0 0 0 4px rgba(55,221,190,.18); }
 .hero .tagline{ font-family:var(--block); font-style:normal; font-weight:400; text-transform:uppercase; letter-spacing:.03em; font-size:clamp(13px,2.9vw,30px); line-height:1.3; color:var(--ink-dim); margin-top:28px; text-align:center; white-space:nowrap; }
 .hero .tagline .grad{ font-weight:400; background:linear-gradient(100deg,var(--violet),var(--coral) 60%,var(--amber)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+@media (max-width:400px){ .hero .tagline{ white-space:normal; font-size:clamp(12px,3.6vw,16px); max-width:320px; } }
 .btn{ font-family:var(--body); font-weight:700; font-size:14px; padding:13px 24px; border-radius:100px; display:inline-flex; align-items:center; gap:8px; transition:all .25s cubic-bezier(.2,.8,.2,1); position:relative; }
 .btn-primary{ background:var(--ink); color:var(--bg); }
 .btn-primary:hover{ background:var(--violet); transform:translateY(-2px); box-shadow:0 14px 32px -10px rgba(139,127,255,.5); }
@@ -192,10 +197,10 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .skill-card h4{ font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:12px; transform:translateZ(20px); color:#fff; }
 .skill-card ul{ list-style:none; display:flex; flex-direction:column; gap:7px; transform:translateZ(10px); }
 .skill-card li{ font-size:13.5px; color:rgba(255,255,255,.78); }
-.c-violet{ background:linear-gradient(155deg,#34295E,#241C4A); }
-.c-coral{ background:linear-gradient(155deg,#7A3F2E,#4A2318); }
-.c-amber{ background:linear-gradient(155deg,#7A6538,#3D2E16); }
-.c-teal{ background:linear-gradient(155deg,#146B60,#0A332C); }
+.c-violet{ background:linear-gradient(155deg,#221C3D,#1C1636); }
+.c-coral{ background:linear-gradient(155deg,#4E2A1F,#341A12); }
+.c-amber{ background:linear-gradient(155deg,#4E4127,#26200F); }
+.c-teal{ background:linear-gradient(155deg,#0F4A42,#08221E); }
 @media (max-width:920px){ .skill-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:520px){ .skill-grid{ grid-template-columns:1fr; } }
 
@@ -251,9 +256,13 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .pgrid .pflip:nth-child(2) .pflip-inner{ top:0; right:0; }
 .pgrid .pflip:nth-child(3) .pflip-inner{ bottom:0; left:0; }
 .pgrid .pflip:nth-child(4) .pflip-inner{ bottom:0; right:0; }
-.pflip:hover .pflip-inner{ width:calc(200% + 14px); height:420px; box-shadow:0 46px 90px -20px rgba(0,0,0,.8); z-index:6; }
+@media (hover:hover) and (pointer:fine){
+  .pflip:hover .pflip-inner{ width:calc(200% + 14px); height:420px; box-shadow:0 46px 90px -20px rgba(0,0,0,.8); z-index:6; }
+}
 .pflip:hover{ z-index:6; }
-.pgrid:has(.pflip:hover) .pflip:not(:hover){ opacity:.4; filter:blur(1px) saturate(.7); transition:opacity .35s, filter .35s; }
+@media (hover:hover) and (pointer:fine){
+  .pgrid:has(.pflip:hover) .pflip:not(:hover){ opacity:.4; filter:blur(1px) saturate(.7); transition:opacity .35s, filter .35s; }
+}
 .pflip:not(:hover){ transition:opacity .35s, filter .35s; }
 
 .pf-img{ flex:0 0 0; width:0; position:relative; overflow:hidden; opacity:0; transition:flex-basis .5s ease, width .5s ease, opacity .3s ease; }
@@ -289,10 +298,10 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .other-card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; transition:transform .25s, background .3s, border-color .3s; }
 .other-card h4{ font-family:var(--display); font-size:14.5px; font-weight:700; margin-bottom:6px; transition:color .3s; }
 .other-card p{ font-size:12.5px; color:var(--ink-faint); transition:color .3s; }
-.other-card:nth-child(4n+1):hover{ background:linear-gradient(155deg,#34295E,#191233); border-color:transparent; }
-.other-card:nth-child(4n+2):hover{ background:linear-gradient(155deg,#7A3F2E,#401D14); border-color:transparent; }
-.other-card:nth-child(4n+3):hover{ background:linear-gradient(155deg,#7A6538,#3D2E12); border-color:transparent; }
-.other-card:nth-child(4n):hover{ background:linear-gradient(155deg,#146B60,#0A2F29); border-color:transparent; }
+.other-card:nth-child(4n+1):hover{ background:linear-gradient(155deg,#221C3D,#100C1F); border-color:transparent; }
+.other-card:nth-child(4n+2):hover{ background:linear-gradient(155deg,#4E2A1F,#26140F); border-color:transparent; }
+.other-card:nth-child(4n+3):hover{ background:linear-gradient(155deg,#4E4127,#26200D); border-color:transparent; }
+.other-card:nth-child(4n):hover{ background:linear-gradient(155deg,#0F4A42,#08211D); border-color:transparent; }
 .other-card:hover{ transform:translateY(-4px); }
 .other-card:hover h4{ color:#fff; }
 .other-card:hover p{ color:rgba(255,255,255,.8); }
@@ -311,7 +320,7 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .exp-card .role{ color:#8A8577; font-size:13px; margin-bottom:10px; }
 .exp-card ul{ list-style:none; display:flex; flex-direction:column; gap:6px; }
 .exp-card li{ font-size:13.5px; color:#5A5648; padding-left:16px; position:relative; }
-.exp-card li::before{ content:"›"; position:absolute; left:0; color:#7A3F2E; font-weight:700; }
+.exp-card li::before{ content:"›"; position:absolute; left:0; color:#4E2A1F; font-weight:700; }
 
 /* ---------- CREDENTIALS — flip cards ---------- */
 .cred-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; perspective:1200px; }
@@ -320,7 +329,7 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .cred-flip:hover .cred-inner{ transform:rotateY(180deg); }
 .cred-face{ position:absolute; inset:0; border-radius:16px; backface-visibility:hidden; padding:20px; display:flex; flex-direction:column; justify-content:center; }
 .cred-front{ background:#F6F1E7; border:1px solid rgba(0,0,0,.06); box-shadow:0 14px 30px -18px rgba(0,0,0,.5); }
-.cred-back{ background:linear-gradient(155deg,#34295E,#191233); color:#fff; border:1px solid rgba(255,255,255,.12); transform:rotateY(180deg); align-items:flex-start; }
+.cred-back{ background:linear-gradient(155deg,#221C3D,#100C1F); color:#fff; border:1px solid rgba(255,255,255,.12); transform:rotateY(180deg); align-items:flex-start; }
 .cred-front .kind{ font-family:var(--mono); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; display:inline-block; padding:4px 10px; border-radius:100px; width:fit-content; }
 .cred-front h4{ font-size:14.5px; font-weight:700; color:#1B1A17; }
 .cred-back p{ font-size:13px; line-height:1.5; color:rgba(255,255,255,.85); }
@@ -436,10 +445,10 @@ footer{ padding:34px 0 40px; }
       <p style="color:var(--ink-dim);font-size:14px;margin-top:10px;">Hover a project card to expand it and see the full case study.</p>
     </div>
 
-    <div class="featured-proj reveal" style="background:linear-gradient(155deg,#34295E,#171029);">
+    <div class="featured-proj reveal" style="background:linear-gradient(155deg,#221C3D,#171029);">
       <div class="fp-image">
         <img src="assets/projects/thesis-dashboard.jpg" alt="Network Attack Forecasting Dashboard screenshot">
-        <div class="fp-shade" style="background:#34295E;"></div>
+        <div class="fp-shade" style="background:#221C3D;"></div>
       </div>
       <div class="fp-body">
         <div class="eyebrow">MSc Thesis · Featured</div>
@@ -452,7 +461,7 @@ footer{ padding:34px 0 40px; }
 
     <div class="pgrid">
 
-      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#7A3F2E,#401D14);">
+      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#4E2A1F,#26140F);">
         <div class="pf-img contain" style="background:#F3EFE6;"><img src="assets/projects/devops-architecture.jpg" alt="Terraform, Ansible, Docker, GitHub Actions deployment architecture diagram"></div>
         <div class="pf-info">
           <div class="pf-brief">
@@ -473,7 +482,7 @@ footer{ padding:34px 0 40px; }
         </div>
       </div></div>
 
-      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#7A6538,#3D2E12);">
+      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#4E4127,#26200D);">
         <div class="pf-img contain" style="background:#0B0B0C;"><img src="assets/projects/brain-tumor-ui.jpg" alt="neuralBlack brain tumor classification interface showing MRI results"></div>
         <div class="pf-info">
           <div class="pf-brief">
@@ -494,7 +503,7 @@ footer{ padding:34px 0 40px; }
         </div>
       </div></div>
 
-      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#146B60,#0A2F29);">
+      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#0F4A42,#08211D);">
         <div class="pf-img contain" style="background:#4A4A4A;"><img src="assets/projects/speech-detection-ui.jpg" alt="Speech Language Recognition interface showing detected language and converted text"></div>
         <div class="pf-info">
           <div class="pf-brief">
@@ -515,7 +524,7 @@ footer{ padding:34px 0 40px; }
         </div>
       </div></div>
 
-      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#454B58,#262930);">
+      <div class="pflip reveal"><div class="pflip-inner" style="background:linear-gradient(155deg,#30343D,#1B1E23);">
         <div class="pf-img contain" style="background:#20222A;"><img src="assets/projects/sanitary-waste-hardware.png" alt="Automated sanitary waste disposal machine hardware prototype, background removed"></div>
         <div class="pf-info">
           <div class="pf-brief">
@@ -648,28 +657,28 @@ footer{ padding:34px 0 40px; }
     </div>
     <div class="cred-grid">
       <div class="cred-flip reveal"><div class="cred-inner">
-        <div class="cred-face cred-front"><span class="kind" style="background:#E4E0FF;color:#34295E;">Certification</span><h4>Google Cloud Career Practitioners Pathway</h4></div>
-        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#34295E,#191233);"><p>Cloud fundamentals and practitioner-track certification covering core GCP services.</p></div>
+        <div class="cred-face cred-front"><span class="kind" style="background:#E4E0FF;color:#221C3D;">Certification</span><h4>Google Cloud Career Practitioners Pathway</h4></div>
+        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#221C3D,#100C1F);"><p>Cloud fundamentals and practitioner-track certification covering core GCP services.</p></div>
       </div></div>
       <div class="cred-flip reveal"><div class="cred-inner">
-        <div class="cred-face cred-front"><span class="kind" style="background:#E4E0FF;color:#34295E;">Certification</span><h4>Python &amp; Django</h4></div>
-        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#34295E,#191233);"><p>Udemy — backend web development fundamentals with Django.</p></div>
+        <div class="cred-face cred-front"><span class="kind" style="background:#E4E0FF;color:#221C3D;">Certification</span><h4>Python &amp; Django</h4></div>
+        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#221C3D,#100C1F);"><p>Udemy — backend web development fundamentals with Django.</p></div>
       </div></div>
       <div class="cred-flip reveal"><div class="cred-inner">
-        <div class="cred-face cred-front"><span class="kind" style="background:#E4E0FF;color:#34295E;">Certification</span><h4>Data Science &amp; Machine Learning</h4></div>
-        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#34295E,#191233);"><p>Udemy — applied ML and data science fundamentals.</p></div>
+        <div class="cred-face cred-front"><span class="kind" style="background:#E4E0FF;color:#221C3D;">Certification</span><h4>Data Science &amp; Machine Learning</h4></div>
+        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#221C3D,#100C1F);"><p>Udemy — applied ML and data science fundamentals.</p></div>
       </div></div>
       <div class="cred-flip reveal"><div class="cred-inner">
         <div class="cred-face cred-front"><span class="kind" style="background:#FBE0D6;color:#B8431F;">Patent</span><h4>IoT Power Theft Detection &amp; Monitoring</h4></div>
-        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#7A3F2E,#401D14);"><p>Filed 2024 — a system for detecting and monitoring power theft using IoT sensors.</p></div>
+        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#4E2A1F,#26140F);"><p>Filed 2024 — a system for detecting and monitoring power theft using IoT sensors.</p></div>
       </div></div>
       <div class="cred-flip reveal"><div class="cred-inner">
         <div class="cred-face cred-front"><span class="kind" style="background:#FBE0D6;color:#B8431F;">Patent</span><h4>Automated Waste Segregation Apparatus</h4></div>
-        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#7A3F2E,#401D14);"><p>Filed 2022 — an apparatus for automating waste segregation.</p></div>
+        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#4E2A1F,#26140F);"><p>Filed 2022 — an apparatus for automating waste segregation.</p></div>
       </div></div>
       <div class="cred-flip reveal"><div class="cred-inner">
         <div class="cred-face cred-front"><span class="kind" style="background:#F7E7C4;color:#8A631E;">Leadership</span><h4>President, TESLA Club — AISSMS IOIT</h4></div>
-        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#7A6538,#3D2E12);"><p>Aug 2021 – Feb 2023 · led a 15-member team, ran 10+ tech events, lifted engagement 60%.</p></div>
+        <div class="cred-face cred-back" style="background:linear-gradient(155deg,#4E4127,#26200D);"><p>Aug 2021 – Feb 2023 · led a 15-member team, ran 10+ tech events, lifted engagement 60%.</p></div>
       </div></div>
     </div>
   </div>
@@ -728,7 +737,7 @@ const revealEls = document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(el=>io.observe(el));
 } else { revealEls.forEach(el=>el.classList.add('in')); }
 
@@ -807,15 +816,11 @@ function updateExpProgress(){
   const visible = Math.min(Math.max(vh*0.75 - r.top, 0), total);
   const pct = total>0 ? (visible/total*100) : 0;
   expFill.style.height = pct+'%';
-  const passedY = r.top + (pct/100*total);
   expCards.forEach(c=>{
     const cr = c.getBoundingClientRect();
     if(cr.top < vh*0.75){ c.classList.add('passed'); } else { c.classList.remove('passed'); }
   });
 }
-window.addEventListener('scroll', updateExpProgress, { passive:true });
-window.addEventListener('resize', updateExpProgress);
-updateExpProgress();
 
 /* nav: collapse to hamburger on scroll */
 const siteHeader = document.getElementById('siteHeader');
@@ -826,12 +831,10 @@ function closeNavDrop(){
   navToggle.classList.remove('open');
   navToggle.setAttribute('aria-expanded','false');
 }
-if(siteHeader){
-  window.addEventListener('scroll', ()=>{
-    const scrolled = window.scrollY > 80;
-    siteHeader.classList.toggle('scrolled', scrolled);
-    if(!scrolled) closeNavDrop();
-  }, { passive:true });
+function updateNavScroll(){
+  const scrolled = window.scrollY > 80;
+  siteHeader.classList.toggle('scrolled', scrolled);
+  if(!scrolled) closeNavDrop();
 }
 if(navToggle && navDrop){
   navToggle.addEventListener('click', ()=>{
@@ -844,14 +847,32 @@ if(navToggle && navDrop){
 
 /* back-to-top button */
 const backToTop = document.getElementById('backToTop');
+function updateBackToTop(){
+  backToTop.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
+}
 if(backToTop){
-  window.addEventListener('scroll', ()=>{
-    backToTop.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
-  }, { passive:true });
   backToTop.addEventListener('click', ()=>{
     window.scrollTo({ top:0, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
 }
+
+/* single rAF-throttled scroll handler drives all three, instead of three
+   independent unthrottled listeners — much lighter on mobile scroll perf */
+let scrollTicking = false;
+function onScrollFrame(){
+  updateExpProgress();
+  if(siteHeader) updateNavScroll();
+  if(backToTop) updateBackToTop();
+  scrollTicking = false;
+}
+window.addEventListener('scroll', ()=>{
+  if(!scrollTicking){
+    requestAnimationFrame(onScrollFrame);
+    scrollTicking = true;
+  }
+}, { passive:true });
+window.addEventListener('resize', updateExpProgress);
+onScrollFrame();
 
 </script>
 
