@@ -298,13 +298,15 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .other-card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; transition:transform .25s, background .3s, border-color .3s; }
 .other-card h4{ font-family:var(--display); font-size:14.5px; font-weight:700; margin-bottom:6px; transition:color .3s; }
 .other-card p{ font-size:12.5px; color:var(--ink-faint); transition:color .3s; }
-.other-card:nth-child(4n+1):hover{ background:linear-gradient(155deg,#221C3D,#100C1F); border-color:transparent; }
-.other-card:nth-child(4n+2):hover{ background:linear-gradient(155deg,#4E2A1F,#26140F); border-color:transparent; }
-.other-card:nth-child(4n+3):hover{ background:linear-gradient(155deg,#4E4127,#26200D); border-color:transparent; }
-.other-card:nth-child(4n):hover{ background:linear-gradient(155deg,#0F4A42,#08211D); border-color:transparent; }
-.other-card:hover{ transform:translateY(-4px); }
-.other-card:hover h4{ color:#fff; }
-.other-card:hover p{ color:rgba(255,255,255,.8); }
+@media (hover:hover) and (pointer:fine){
+  .other-card:nth-child(4n+1):hover{ background:linear-gradient(155deg,#221C3D,#100C1F); border-color:transparent; }
+  .other-card:nth-child(4n+2):hover{ background:linear-gradient(155deg,#4E2A1F,#26140F); border-color:transparent; }
+  .other-card:nth-child(4n+3):hover{ background:linear-gradient(155deg,#4E4127,#26200D); border-color:transparent; }
+  .other-card:nth-child(4n):hover{ background:linear-gradient(155deg,#0F4A42,#08211D); border-color:transparent; }
+  .other-card:hover{ transform:translateY(-4px); }
+  .other-card:hover h4{ color:#fff; }
+  .other-card:hover p{ color:rgba(255,255,255,.8); }
+}
 @media (max-width:860px){ .other-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:520px){ .other-grid{ grid-template-columns:1fr; } }
 
@@ -333,6 +335,22 @@ section{ padding:80px 0; position:relative; background:var(--bg); }
 .cred-front .kind{ font-family:var(--mono); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; display:inline-block; padding:4px 10px; border-radius:100px; width:fit-content; }
 .cred-front h4{ font-size:14.5px; font-weight:700; color:#1B1A17; }
 .cred-back p{ font-size:13px; line-height:1.5; color:rgba(255,255,255,.85); }
+@media (max-width:760px){
+  .cred-flip{ height:auto; }
+  .cred-inner{ position:static; transform:none!important; transition:none; display:flex; flex-direction:column; }
+  .cred-face{ position:static; backface-visibility:visible; }
+  .cred-front{ border-radius:16px 16px 0 0; }
+  .cred-back{ transform:none; border-radius:0 0 16px 16px; margin-top:-1px; }
+  .cred-hint{ display:none; }
+}
+@media (hover:none){
+  .cred-hint{ display:none; }
+  .cred-flip{ height:auto; }
+  .cred-inner{ position:static; transform:none!important; transition:none; display:flex; flex-direction:column; }
+  .cred-face{ position:static; backface-visibility:visible; }
+  .cred-front{ border-radius:16px 16px 0 0; }
+  .cred-back{ transform:none; border-radius:0 0 16px 16px; margin-top:-1px; }
+}
 @media (max-width:860px){ .cred-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:520px){ .cred-grid{ grid-template-columns:1fr; } }
 
@@ -737,8 +755,12 @@ const revealEls = document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 200px 0px' });
   revealEls.forEach(el=>io.observe(el));
+  // safety net: a fast flick-scroll can carry an element straight past the
+  // observed band without ever registering as intersecting — never leave
+  // anything permanently invisible.
+  setTimeout(()=>{ revealEls.forEach(el=>el.classList.add('in')); io.disconnect(); }, 2500);
 } else { revealEls.forEach(el=>el.classList.add('in')); }
 
 /* about: fade lines to dark as they enter view */
@@ -746,8 +768,9 @@ const fadeLines = document.querySelectorAll('.fade-line');
 if('IntersectionObserver' in window){
   const fio = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('lit'); } });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.2, rootMargin: '0px 0px 100px 0px' });
   fadeLines.forEach(el=>fio.observe(el));
+  setTimeout(()=>{ fadeLines.forEach(el=>el.classList.add('lit')); fio.disconnect(); }, 3000);
 } else { fadeLines.forEach(el=>el.classList.add('lit')); }
 
 if(!reduceMotion && !isCoarse){
